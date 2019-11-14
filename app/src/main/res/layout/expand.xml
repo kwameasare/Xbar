@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="540dp"
+    android:id="@+id/wind"
+    android:layout_height="match_parent">
+
+<RelativeLayout
+    android:layout_width="540dp"
+    android:layout_height="match_parent"
+    android:layout_alignParentEnd="true"
+    android:clickable="true"
+    android:background="@drawable/frost4"
+    android:id="@+id/exvvv"
+    android:focusable="true">
+
+
+
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:id="@+id/frost"
+
+        />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/top_panel"
+        android:paddingTop="10dp"
+        android:paddingEnd="20dp"
+        android:visibility="gone"
+        android:paddingStart="35dp"
+        android:paddingBottom="10dp">
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:src="@drawable/ice"
+            android:id="@+id/Profile_Pic" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/profile_name"
+
+            android:textColor="@color/Solid_white"
+            android:textSize="8pt"
+            android:layout_below="@id/Profile_Pic"
+           android:layout_centerHorizontal="true"
+            android:id="@+id/Profile_Name"
+            android:textStyle="bold"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/school_name"
+            android:textColor="@color/Solid_white"
+            android:textSize="7pt"
+            android:layout_below="@+id/Profile_Name"
+           android:layout_centerHorizontal="true"
+            android:textStyle="italic"/>
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="20dp"
+        android:layout_alignParentBottom="true"
+        android:id="@+id/expanded_card"
+
+
+        >
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="150dp">
+
+
+
+            <SeekBar
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_margin="20dp"
+                android:id="@+id/Brightness"
+                style="?android:attr/seekBarStyle"
+                android:max="255"
+
+
+
+                />
+            
+
+
+
+        </RelativeLayout>
+
+
+
+
+
+    </RelativeLayout>
+
+
+
+</RelativeLayout>
+
+
+</RelativeLayout>

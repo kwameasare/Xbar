@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorAccent">#D81B60</color>
+    <color name="darkStatus">#161616</color>
+    <color name="grn">#5CC760</color>
+    <color name="yel">#FFEB3B</color>
+    <color name="hotred">#FF0000</color>
+    <color name="light">#E9E9E9</color>
+    <color name="transDark">#F9000000</color>
+    <color name="white">#ffffff</color>
+    <color name="transWhite">#80ffffff</color>
+    <color name="Solid_white">#ffffff</color>
+
+</resources>
