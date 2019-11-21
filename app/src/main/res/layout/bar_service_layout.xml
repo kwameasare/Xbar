@@ -3,10 +3,9 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:paddingStart="10dp"
-    android:paddingEnd="10dp"
     android:layout_marginBottom="20dp"
     android:id="@+id/barLay"
-    android:layout_marginEnd="30dp"
+
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
 
@@ -14,15 +13,15 @@
 
 
     <android.support.v7.widget.CardView
-        android:layout_width="500dp"
+        android:layout_width="270dp"
         android:layout_height="48dp"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp"
         app:cardCornerRadius="24dp"
         android:id="@+id/maincard"
         app:cardElevation="0dp"
-        android:layout_centerHorizontal="true"
-        app:cardBackgroundColor="@android:color/black"
+
+        app:cardBackgroundColor="@color/barbg"
 
         >
 
@@ -38,7 +37,7 @@
 
                 <RelativeLayout
                     android:id="@+id/backBtnLayout"
-                    android:layout_width="105dp"
+                    android:layout_width="90dp"
                     android:layout_height="match_parent"
 
 
@@ -46,17 +45,17 @@
                     >
 
                     <ImageView
-                        android:layout_width="12dp"
-                        android:layout_height="18dp"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
                         android:layout_centerInParent="true"
                         android:tint="@color/light"
-                        android:src="@drawable/ic_back" />
+                        android:src="@drawable/ic_navigate_before_black_24dp" />
 
                 </RelativeLayout>
 
                 <RelativeLayout
                     android:id="@+id/homeBtnLayout"
-                    android:layout_width="100dp"
+                    android:layout_width="90dp"
                     android:layout_height="match_parent"
                     android:layout_toEndOf="@id/backBtnLayout"
 
@@ -68,14 +67,14 @@
                         android:layout_height="24dp"
                         android:layout_centerInParent="true"
                         android:tint="@color/light"
-                        android:src="@drawable/ic_generic_24dp" />
+                        android:src="@drawable/ic_panorama_fish_eye_black_24dp" />
 
                 </RelativeLayout>
 
 
                 <RelativeLayout
                     android:id="@+id/recentsBtnLayout"
-                    android:layout_width="100dp"
+                    android:layout_width="90dp"
                     android:layout_height="match_parent"
                     android:layout_toEndOf="@id/homeBtnLayout"
 
@@ -83,101 +82,115 @@
                     >
 
                     <ImageView
-                        android:layout_width="20dp"
-                        android:layout_height="15dp"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
                         android:layout_centerInParent="true"
                         android:tint="@color/light"
-                        android:src="@drawable/ic_recents" />
+                        android:src="@drawable/ic_wrap_text_black_24dp" />
 
                 </RelativeLayout>
 
 
             </RelativeLayout>
 
+
+
+        </RelativeLayout>
+
+    </android.support.v7.widget.CardView>
+
+    <android.support.v7.widget.CardView
+        android:layout_width="250dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="-40dp"
+        android:layout_marginBottom="10dp"
+        android:layout_toEndOf="@id/maincard"
+        app:cardBackgroundColor="@color/barbg"
+        app:cardCornerRadius="24dp"
+        app:cardElevation="0dp">
+
+
+        <RelativeLayout
+            android:id="@+id/statuspart"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="40dp"
+
+            android:foreground="@drawable/rip">
+
+
             <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_toEndOf="@id/nav_part"
-                android:id="@+id/statuspart"
-                android:background="@color/darkStatus"
-
-                android:foreground="@drawable/rip"
-                >
-
-
-
-            <RelativeLayout
-                android:layout_width="80dp"
-                android:layout_height="match_parent"
                 android:id="@+id/timeLayout"
-                android:layout_marginStart="10dp"
+                android:layout_width="70dp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="20dp"
 
                 >
 
                 <TextClock
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@android:color/white"
                     android:layout_centerInParent="true"
-                    android:textSize="18sp"
-                    android:textStyle="bold"
+                    android:textColor="@android:color/white"
+                    android:textSize="16sp"
+
                     />
 
             </RelativeLayout>
 
             <RelativeLayout
-                android:layout_width="60dp"
-                android:layout_height="match_parent"
                 android:id="@+id/statusBtnLayout"
-                android:layout_toEndOf="@id/timeLayout"
-                >
+                android:layout_width="40dp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="10dp"
+                android:layout_toEndOf="@id/timeLayout">
 
                 <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
                     android:layout_centerInParent="true"
-                    android:src="@drawable/ic_generic_24dp"
-                    />
+                    android:tint="@color/light"
+                    android:src="@drawable/ic_notifications_none_black_24dp" />
 
             </RelativeLayout>
 
-                <ProgressBar
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_alignParentEnd="true"
-                    android:max="100"
-                    android:progress="40"
-                    android:layout_marginEnd="10dp"
-                    android:layout_centerVertical="true"
-                    android:background="@drawable/ring_bg"
-                    style="?android:attr/progressBarStyleHorizontal"
-                    android:progressTint="@color/light"
-                    android:layout_centerHorizontal="true"
-                    android:id="@+id/battbar"
-                    android:progressDrawable="@drawable/circle_prog"
-                    />
-              <RelativeLayout
-                  android:layout_width="30dp"
-                  android:layout_height="30dp"
-                  android:layout_alignParentEnd="true"
-                  android:layout_centerVertical="true"
-                  android:layout_marginEnd="15dp"
-                  >
+            <ProgressBar
+                android:id="@+id/battbar"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_alignParentEnd="true"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="20dp"
+                android:background="@drawable/ring_bg"
+                android:max="100"
+                android:progress="40"
+                android:progressDrawable="@drawable/circle_prog"
+                android:progressTint="@color/light" />
+
+            <RelativeLayout
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="25dp">
+
                 <TextView
+                    android:id="@+id/batt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
-                    android:id="@+id/batt"
                     android:text="@string/_40"
-                    android:textSize="12sp"
-
                     android:textColor="@color/white"
-                    />
-              </RelativeLayout>
 
+                    android:textSize="12sp" />
             </RelativeLayout>
 
         </RelativeLayout>
+
 
     </android.support.v7.widget.CardView>
 

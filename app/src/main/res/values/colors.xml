@@ -12,5 +12,7 @@
     <color name="white">#ffffff</color>
     <color name="transWhite">#80ffffff</color>
     <color name="Solid_white">#ffffff</color>
+    <color name="barbg">#df000000</color>
+    <color name="blk">#000000</color>
 
 </resources>
