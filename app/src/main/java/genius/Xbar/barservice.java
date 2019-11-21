@@ -24,6 +24,7 @@ import android.view.accessibility.AccessibilityEvent;
 import android.view.accessibility.AccessibilityManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.SeekBar;
@@ -96,7 +97,7 @@ public class barservice extends AccessibilityService {
         super.onCreate();
 
         View mBarView = View.inflate(this, R.layout.bar_service_layout, null);
-
+        final ImageView noti=mBarView.findViewById(R.id.noti_dot);
         xpanel=View.inflate(this,R.layout.expand,null);
         RelativeLayout back=mBarView.findViewById(R.id.backBtnLayout);
         RelativeLayout home=mBarView.findViewById(R.id.homeBtnLayout);
@@ -265,6 +266,7 @@ public class barservice extends AccessibilityService {
                 if(!ExRunning) {
 
                     extPanel(xpanel);
+                    noti.setVisibility(View.INVISIBLE);
 
                 }
 
