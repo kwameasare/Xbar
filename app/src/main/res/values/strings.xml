@@ -5,4 +5,6 @@
     <string name="_40">40</string>
     <string name="profile_name">profile_name</string>
     <string name="school_name">school_name</string>
+    <string name="title">Title</string>
+    <string name="notification_icon">Notification icon</string>
 </resources>

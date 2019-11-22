@@ -115,6 +115,7 @@ public class barservice extends AccessibilityService {
         profile=xpanel.findViewById(R.id.top_panel);
         drop=AnimationUtils.loadAnimation(getApplicationContext(),R.anim.drop);
 
+
 // get Settings permission if not already granted
 
 

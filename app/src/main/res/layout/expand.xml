@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="540dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/wind"
     android:layout_height="match_parent">
 
@@ -14,15 +15,22 @@
     android:focusable="true">
 
 
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="800dp"
+    android:layout_marginTop="140dp"
+    >
+<android.support.v7.widget.RecyclerView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"/>
 
 
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:scaleType="centerCrop"
-        android:id="@+id/frost"
 
-        />
+
+
+</RelativeLayout>
+
+
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -66,36 +74,51 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="20dp"
+        android:padding="25dp"
         android:layout_alignParentBottom="true"
         android:id="@+id/expanded_card"
 
 
         >
 
-
-        <RelativeLayout
+        <android.support.v7.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="150dp">
+            android:layout_height="150dp"
+            app:cardBackgroundColor="#121212"
+            app:cardElevation="10dp"
+            app:cardCornerRadius="5dp"
+            android:layout_marginBottom="60dp"
+            >
 
-
-
-            <SeekBar
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="30dp"
-                android:layout_margin="20dp"
-                android:id="@+id/Brightness"
-                style="?android:attr/seekBarStyle"
-                android:max="255"
+                android:layout_height="match_parent">
 
 
 
-                />
-            
+                <SeekBar
+                    android:layout_width="400dp"
+                    android:layout_height="30dp"
+                    android:layout_margin="20dp"
+                    android:id="@+id/Brightness"
+                    android:layout_centerHorizontal="true"
+                    style="?android:attr/seekBarStyle"
+                    android:max="255"
 
 
 
-        </RelativeLayout>
+                    />
+
+
+
+
+            </RelativeLayout>
+
+
+        </android.support.v7.widget.CardView>
+
+
+
 
 
 
