@@ -4,14 +4,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="520dp"
-    android:padding="20dp"
-    android:layout_height="110dp">
+    android:paddingTop="5dp"
+    android:paddingBottom="15dp"
+    android:paddingStart="20dp"
+    android:paddingEnd="20dp"
+    android:layout_height="85dp">
 
-    <android.support.v7.widget.CardView
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/noti_card"
-        app:cardBackgroundColor="#111111"
+        app:cardBackgroundColor="@color/off_black"
+        android:elevation="8dp"
         app:cardCornerRadius="5dp"
         >
 
@@ -28,20 +32,23 @@
                 android:contentDescription="@string/notification_icon" />
 
             <TextView
-                android:layout_width="45dp"
+                android:layout_width="50dp"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/noti_ic"
                 android:layout_marginTop="5dp"
-                android:layout_marginStart="15dp"
+                android:id="@+id/pack_name"
+                android:textColor="@color/light"
+                android:layout_marginStart="12dp"
                 android:textSize="10sp"
                 tools:ignore="SmallSp" />
 
             <TextView
                 android:layout_width="match_parent"
-                android:layout_height="30dp"
+                android:layout_height="15dp"
                 android:layout_alignParentBottom="true"
                 android:layout_marginStart="70dp"
-                android:layout_marginBottom="10dp"
+                android:layout_marginBottom="6dp"
+                android:textColor="@color/light"
                 android:textSize="12sp"
                 android:id="@+id/noti_text"
                 android:layout_marginEnd="10dp"
@@ -53,16 +60,40 @@
                 android:layout_marginEnd="10dp"
                 android:textStyle="bold"
                 android:textSize="14sp"
+                android:id="@+id/ticker"
+                android:textColor="@color/light"
+                android:text="@string/title"
+                android:layout_marginStart="70dp"
+                android:layout_marginTop="24dp"
+
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="16dp"
+                android:layout_marginEnd="250dp"
+                android:textStyle="bold"
+                android:textSize="14sp"
                 android:id="@+id/noti_ttl"
+                android:textColor="@color/light"
                 android:text="@string/title"
                 android:layout_marginStart="70dp"
                 android:layout_marginTop="8dp"
 
                 />
 
+            <ImageView
+                android:layout_width="12dp"
+                android:layout_height="12dp"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="8dp"
+                android:id="@+id/lil_ic"
+                android:layout_marginEnd="10dp"
+                />
+
 
         </RelativeLayout>
 
-    </android.support.v7.widget.CardView>
+    </androidx.cardview.widget.CardView>
 
 </RelativeLayout>

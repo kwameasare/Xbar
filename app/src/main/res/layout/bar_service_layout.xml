@@ -12,7 +12,7 @@
 
 
 
-    <android.support.v7.widget.CardView
+    <androidx.cardview.widget.CardView
         android:layout_width="270dp"
         android:layout_height="48dp"
         android:layout_marginTop="10dp"
@@ -97,9 +97,9 @@
 
         </RelativeLayout>
 
-    </android.support.v7.widget.CardView>
+    </androidx.cardview.widget.CardView>
 
-    <android.support.v7.widget.CardView
+    <androidx.cardview.widget.CardView
         android:layout_width="250dp"
         android:layout_height="48dp"
         android:layout_marginStart="30dp"
@@ -202,7 +202,7 @@
         </RelativeLayout>
 
 
-    </android.support.v7.widget.CardView>
+    </androidx.cardview.widget.CardView>
 
 
 

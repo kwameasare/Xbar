@@ -8,17 +8,19 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.ServiceInfo;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.PixelFormat;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.os.BatteryManager;
 import android.os.Handler;
 import android.provider.Settings;
-import android.support.v4.content.ContextCompat;
-import android.support.v7.widget.CardView;
 import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.view.accessibility.AccessibilityEvent;
 import android.view.accessibility.AccessibilityManager;
@@ -31,8 +33,18 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
+import androidx.core.content.ContextCompat;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 
 public class barservice extends AccessibilityService {
@@ -42,6 +54,12 @@ public class barservice extends AccessibilityService {
     TextView batteryTxt;
     String batt;
     RelativeLayout profile;
+    ArrayList<Model> modelList;
+    ArrayList<String> pkg;
+    ArrayList<String> txt;
+    CustomListAdapter adapter;
+    RecyclerView list;
+
 
     private final static int INTERVAL = 1000 * 60 ;
     Handler mHandler = new Handler();
@@ -114,6 +132,19 @@ public class barservice extends AccessibilityService {
         battbar=mBarView.findViewById(R.id.battbar);
         profile=xpanel.findViewById(R.id.top_panel);
         drop=AnimationUtils.loadAnimation(getApplicationContext(),R.anim.drop);
+        LocalBroadcastManager.getInstance(this).registerReceiver(onNotice, new IntentFilter("Msg"));
+        modelList = new ArrayList<>();
+        pkg=new ArrayList<>();
+        txt=new ArrayList<>();
+        adapter = new CustomListAdapter(getApplicationContext(), modelList);
+        RecyclerView.LayoutManager llm= new GridLayoutManager(getApplicationContext(),1);
+        list=xpanel.findViewById(R.id.notify);
+        list.setLayoutManager(llm);
+        list.setAdapter(adapter);
+
+
+
+
 
 
 // get Settings permission if not already granted
@@ -229,19 +260,9 @@ public class barservice extends AccessibilityService {
         });
 
 
-        home.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                barservice.this.performGlobalAction(2);
-            }
-        });
+        home.setOnClickListener(v -> barservice.this.performGlobalAction(2));
 
-        recents.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                barservice.this.performGlobalAction(3);
-            }
-        });
+        recents.setOnClickListener(v -> barservice.this.performGlobalAction(3));
 
         xpanel.addOnAttachStateChangeListener(new View.OnAttachStateChangeListener() {
             @Override
@@ -260,25 +281,33 @@ public class barservice extends AccessibilityService {
         });
 
 
-        expand.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        expand.setOnClickListener(v -> {
 
-                if(!ExRunning) {
+            if(!ExRunning) {
 
-                    extPanel(xpanel);
-                    noti.setVisibility(View.INVISIBLE);
-
-                }
-
-                else {
-
-                    exvvv.startAnimation(slideOutRight);
+                extPanel(xpanel);
+                noti.setVisibility(View.INVISIBLE);
 
 
-                }
+//                LocalBroadcastManager.getInstance(this).registerReceiver(onNotice, new IntentFilter("Msg"));
+//                modelList = new ArrayList<>();
+//                adapter = new CustomListAdapter(getApplicationContext(), modelList);
+//                RecyclerView.LayoutManager llm= new GridLayoutManager(getApplicationContext(),1);
+//                list=xpanel.findViewById(R.id.notify);
+//                list.setLayoutManager(llm);
+//                list.setAdapter(adapter);
+
+
 
             }
+
+            else {
+
+                exvvv.startAnimation(slideOutRight);
+
+
+            }
+
         });
 
         seek();
@@ -409,5 +438,167 @@ public class barservice extends AccessibilityService {
 
 
 
+    private BroadcastReceiver onNotice= new BroadcastReceiver() {
+
+        @Override
+        public void onReceive(Context context, Intent intent) {
+             String pack = intent.getStringExtra("package");
+            String title = intent.getStringExtra("title");
+            String text = intent.getStringExtra("text");
+            String ticker=intent.getStringExtra("ticker");
+            int id = intent.getIntExtra("id",0);
+
+
+
+                pkg.add(pack);
+                
+
+                txt.add(text);
+
+
+
+            Toast.makeText(barservice.this,"getting Something",Toast.LENGTH_LONG).show();
+
+            Context remotePackageContext = null;
+            try {
+                remotePackageContext = getApplicationContext().createPackageContext(pack, 0);
+                Drawable icon = remotePackageContext.getResources().getDrawable(id);
+
+                byte[] byteArray =intent.getByteArrayExtra("icon");
+                Bitmap bmp = null;
+                if(byteArray !=null) {
+                    bmp = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length);
+                }
+                Model model = new Model();
+
+                if(icon !=null) {
+                    model.setIcon(icon);
+                }
+
+                model.setName(title);
+                model.setImage(bmp);
+                model.setPac(pack);
+                model.setText(text);
+                model.setTicker(ticker);
+
+                if(modelList !=null) {
+
+
+                    if(!pkg.contains(pack) && !txt.contains(text)) {
+                        modelList.add(model);
+                        adapter.notifyDataSetChanged();
+
+                    }
+
+
+                }else {
+                    modelList = new ArrayList<>();
+                    modelList.add(model);
+                    adapter = new CustomListAdapter(getApplicationContext(), modelList);
+                    RecyclerView.LayoutManager llm= new GridLayoutManager(getApplicationContext(),1);
+                    list=xpanel.findViewById(R.id.notify);
+                    list.setLayoutManager(llm);
+                    list.setAdapter(adapter);
+                }
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    };
+
+
+
+
+
+    public class CustomListAdapter extends RecyclerView.Adapter<noti>{
+
+
+        Context mContext;
+        ArrayList<Model> modelList;
+
+
+        CustomListAdapter(Context context, ArrayList<Model> mList) {
+            mContext =context ;
+            modelList = mList;
+        }
+
+
+
+
+
+        @NonNull
+        @Override
+        public noti onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+
+            View view= LayoutInflater.from(mContext).inflate(R.layout.noti_lay, parent, false);
+
+            return new  noti(view);
+        }
+
+
+        @Override
+        public void onBindViewHolder(@NonNull noti holder, int position) {
+
+
+          if(modelList!=null){
+
+              Model m = modelList.get(position);
+
+              holder.noti_ic.setImageBitmap(m.getImage());
+              holder.pack_Name.setText(m.getPac());
+              holder.noti_ttl.setText(m.getName());
+              holder.noti_text.setText(m.getText());
+              holder.ticker.setText(m.getTicker());
+              holder.lil_ic.setImageDrawable(m.getIcon());
+
+
+
+
+          }
+
+          else {
+
+              Toast.makeText(barservice.this,"getting None",Toast.LENGTH_LONG).show();
+
+          }
+
+
+        }
+
+
+        @Override
+        public int getItemCount() {
+            return modelList.size();
+        }
+    }
+
+
+
+
+    class noti extends RecyclerView.ViewHolder{
+
+        @BindView(R.id.noti_ttl)
+        TextView noti_ttl;
+        @BindView(R.id.noti_text)
+        TextView noti_text;
+        @BindView(R.id.pack_name)
+        TextView pack_Name;
+        @BindView(R.id.noti_ic)
+        ImageView noti_ic;
+        @BindView(R.id.ticker)
+        TextView ticker;
+        @BindView(R.id.lil_ic)
+        ImageView lil_ic;
+
+
+
+
+        noti(@NonNull View itemView) {
+            super(itemView);
+            ButterKnife.bind(this, itemView);
+
+        }
+    }
 
 }
