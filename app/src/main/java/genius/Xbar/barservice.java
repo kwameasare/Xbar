@@ -33,16 +33,15 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.core.content.ContextCompat;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import java.util.ArrayList;
-import java.util.List;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -123,7 +122,7 @@ public class barservice extends AccessibilityService {
         RelativeLayout expand=mBarView.findViewById(R.id.statuspart);
         final CardView mainCard= mBarView.findViewById(R.id.maincard);
         brightness =xpanel.findViewById(R.id.Brightness);
-        thumb=ContextCompat.getDrawable(this, R.drawable.ic_brightness_high_black_24dp );
+        thumb= ContextCompat.getDrawable(this, R.drawable.ic_brightness_high_black_24dp );
         brightness.setThumb(thumb);
         slideInRight= AnimationUtils.loadAnimation(getApplicationContext(),R.anim.slide_in_right);
         exvvv=xpanel.findViewById(R.id.exvvv);
